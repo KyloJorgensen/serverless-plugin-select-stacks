@@ -74,7 +74,7 @@ resources:
       Type: AWS::ApiGateway::RestApi
       Properties:
         Name: ${self:provider.stackName}
-        Description: Cove API Gateway
+        Description: API Gateway
   Outputs:
     # RestApi resource ID (e.g. ei829oe)
     RestApiId:
