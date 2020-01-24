@@ -16,7 +16,7 @@ Select which functions are to be deployed based on region and stage.
 Install via npm in the root of your Serverless service:
 
 ```
-npm install serverless-plugin-select --save-dev
+npm install serverless-plugin-select-stacks --save-dev
 ```
 
 - Add the plugin to the `plugins` array in your Serverless `serverless.yml`, you should place it at the top of the list:
