@@ -1,4 +1,4 @@
-# Serverless Select Stack Plugin
+# Serverless Select Stacks Plugin
 
 inspiration serverless-plugin-select author Gonçalo Neves
 
