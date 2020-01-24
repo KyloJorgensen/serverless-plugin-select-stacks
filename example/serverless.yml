@@ -1,0 +1,79 @@
+service:
+  name: split-stack-example
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+  - serverless-plugin-select-stacks
+
+provider:
+  name: aws
+  runtime: nodejs10.x
+  region: us-east-1
+  stackName: ${self:service.name}-${opt:stage, self:provider.stage}${self:custom.stack.${opt:stack, ''}.postfix, ''}
+  apiGateway: ${self:custom.stack.${opt:stack, ''}.apiGateway, ''}
+  role: <ARN_AWS_IAM_ROLE>
+
+package:
+  individually: true
+
+custom:
+  apiGateway:
+    restApiId:
+      Fn::ImportValue: "${self:service.name}-${opt:stage, self:provider.stage}-RestApiId"
+    restApiRootResourceId:
+      Fn::ImportValue: "${self:service.name}-${opt:stage, self:provider.stage}-RootResourceId"
+
+  stack:
+    email:
+      name: email
+      postfix: -email
+      apiGateway: ${self:custom.apiGateway}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          method: get
+          path: hello
+  helloEmail:
+    handler: handler.hello
+    stacks:
+      - email
+    events:
+      - http:
+          method: get
+          path: email/hello
+  helloEmail2:
+    handler: handler.hello
+    stacks:
+      - email
+    events:
+      - http:
+          method: get
+          path: email/hello
+
+resources:
+  Resources:
+    ApiGatewayRestApi:
+      Type: AWS::ApiGateway::RestApi
+      Properties:
+        Name: ${self:provider.stackName}
+        Description: Cove API Gateway
+  Outputs:
+    # RestApi resource ID (e.g. ei829oe)
+    RestApiId:
+      Value:
+        Ref: ApiGatewayRestApi
+      Export:
+        Name: ${self:provider.stackName}-RestApiId
+    # RestApi Root Resource (the implicit '/' path)
+    RootResourceId:
+      Value:
+        Fn::GetAtt: ApiGatewayRestApi.RootResourceId
+      Export:
+        Name: ${self:provider.stackName}-RootResourceId

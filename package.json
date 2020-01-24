@@ -1,29 +1,30 @@
 {
-  "name": "serverless-plugin-select",
-  "version": "2.0.0-rc.1",
-  "description": "Serverless plugin that selects which functions are to be deployed.",
+  "name": "serverless-plugin-select-stacks",
+  "version": "1.0.0-rc.1",
+  "description": "Serverless plugin that selects which functions are to be deployed stack",
   "main": "src/index.js",
   "scripts": {
     "lint": "node_modules/.bin/standard src/**",
     "lint:fix": "node_modules/.bin/standard --fix src/**"
   },
-  "author": "Gonçalo Neves",
+  "author": "Kylo Jorgensen",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FidelLimited/serverless-plugin-select.git"
+    "url": "git+https://github.com/KyloJorgensen/serverless-plugin-select-stacks.git"
   },
   "keywords": [
     "serverless plugin select functions",
     "serverless select",
     "serverless plugin",
     "lambda serverless",
-    "select lambda for deploy"
+    "select lambda for deploy",
+    "lambda split stack"
   ],
   "bugs": {
-    "url": "https://github.com/FidelLimited/serverless-plugin-select/issues"
+    "url": "https://github.com/KyloJorgensen/serverless-plugin-select-stacks/issues"
   },
-  "homepage": "https://github.com/FidelLimited/serverless-plugin-select",
+  "homepage": "https://github.com/KyloJorgensen/serverless-plugin-select-stacks",
   "dependencies": {
     "bluebird": "^3.5.0"
   },
