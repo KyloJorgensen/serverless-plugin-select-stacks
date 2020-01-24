@@ -1,6 +1,6 @@
 {
   "name": "serverless-plugin-select-stacks",
-  "version": "1.0.3-rc.1",
+  "version": "1.0.4-rc.1",
   "description": "Serverless plugin that selects which functions are to be deployed stack",
   "main": "src/index.js",
   "scripts": {
